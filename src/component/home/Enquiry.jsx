@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PhoneIcon from "@mui/icons-material/phone";
+import PhoneIcon from "@mui/icons-material/Phone";
 
 function Enquiry() {
   const [formData, setFormData] = useState({
