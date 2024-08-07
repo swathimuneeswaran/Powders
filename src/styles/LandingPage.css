@@ -67,7 +67,7 @@
   margin-left: 8px; 
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   #home_section {
     background-size: contain;
   }
