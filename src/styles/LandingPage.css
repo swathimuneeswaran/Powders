@@ -52,17 +52,17 @@
 
 @media (min-width: 351px) and (max-width: 400px) {
   #home_button {
-    top: 180px;
-    left: 150px;
+    top: 380px;
+    left: 270px;
   }
   .landing {
-    height: 650px;
+    height: 180vh;
     width: 700px!important;
     margin-top: 50px!important;
     background-size: cover!important;
     background-position: center center!important;
     background-repeat: no-repeat!important;
-    margin: 0px !important;
+    margin-top: 60px !important;
     position: absolute!important;
     left: 0px;
     right:0px;
