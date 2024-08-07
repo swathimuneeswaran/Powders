@@ -68,11 +68,12 @@
   margin-left: 8px; 
 }
 
-@media screen and (max-width: 500px) {
+@media (min-width: 200px) and (max-width:450px) {
   #home_section {
  
    background-size: contain!important;
    
+  
   }
   .landing-container {
     flex-direction: column;
@@ -89,7 +90,22 @@
   }
 
   .home_button {
-    left: 20px;
+    
+    z-index: 1;
+  
+  }
+  .home_button_text {
+    margin-right: 8px;
+    margin-bottom: 5px;
+    font-size: 10px!important;
+
+    color: black;
+  }
+  
+  .home_button_icon {
+    
+    font-size: 15px !important; 
+    margin-left: 8px; 
   }
 }
 
