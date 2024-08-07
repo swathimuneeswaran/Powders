@@ -22,7 +22,7 @@ const LandingPage = () => {
       <div className="row mx-0 px-0 align-items-center ">
         <div className="col-12 col-md-6 " id="home_section">
           <button
-            className="btn btn-success text-center"
+            className="btn btn-success d-flex justify-content-center align-items-center "
             id="home_button"
             onClick={handleClick}
           >

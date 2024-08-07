@@ -34,8 +34,9 @@
 }
 
 .home_button {
-  display: flex;
-  align-items: center;
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center items vertically */
+ 
   background-color: green;
   color: white;
   border: none;
@@ -43,7 +44,6 @@
   font-size: 1em;
   cursor: pointer;
   border-radius: 5px;
-
   position: absolute;
   left: 320px;
   top: 210px;
@@ -56,15 +56,20 @@
 
 .home_button_text {
   margin-right: 8px;
+  margin-bottom: 5px;
+  font-size: 1.5em; 
+  color: black;
 }
 
 .home_button_icon {
-  font-size: 1.2em;
+  
+  font-size: 1.5em; 
+  margin-left: 8px; 
 }
 
 @media screen and (max-width: 400px) {
   #home_section {
-    background-size: cover;
+    background-size: contain;
   }
   .landing-container {
     flex-direction: column;
@@ -86,7 +91,7 @@
 
 @media screen and (min-width: 601px) and (max-width: 800px) {
   #home_section {
-    background-size: cover;
+    background-size: contain;
   }
   .landing-container {
     flex-direction: column;

@@ -59,10 +59,10 @@ const Navbar = () => {
         </nav>
         <div id="hamburger" onClick={toggleMenu}>
           <div className="social-media">
-            <a href="https://www.instagram.com/shreehariglobalfoods/">
+            <a href="https://www.instagram.com/shreehariglobalfoods_kannada/?igsh=MTh1bmJtZG9zcG9yNg%3D%3D" target="_blank">
               <InstagramIcon />
             </a>
-            <a href="https://www.instagram.com/shreehariglobalfoods/">
+            <a href="https://www.youtube.com/@ShreeHariGlobalFoods" target="_blank">
               <YouTubeIcon />
             </a>
             <a href="https://wa.me/7338490894 "  target="_blank">
