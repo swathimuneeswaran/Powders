@@ -18,9 +18,11 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="container-fluid mx-0 px-0  " id="landing_page">
+    <div className="container" id="landing_page">
       <div className="row mx-0 px-0 align-items-center ">
-        <div className="col-12 col-md-6 " id="home_section">
+        <div className="col-12 col-md-6 "  id="home_section">
+          <img src={landing1}className="landing" height="750" width="100%"/>
+          <div>
           <button
             className="btn btn-success d-flex justify-content-center align-items-center "
             id="home_button"
@@ -31,12 +33,14 @@ const LandingPage = () => {
               arrow_forward
             </span>
           </button>
+          </div>
         </div>
         <div className="d-none d-md-inline col-md-6 px-0 mx-0  ">
           <img
             src={Manu_unit1}
             className="col-12 manufacturing_unit"
             alt="Manufacturing Unit"
+            height="750" width="100%"
           />
         </div>
       </div>
