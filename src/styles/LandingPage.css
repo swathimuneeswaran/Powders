@@ -1,14 +1,4 @@
-/* #home_section{
-  background: url("../assets/images/landing1.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: absolute;
- 
-  height: 650px;
-  margin-top: 600px;
-  
-} */
+
 
 #home_button {
   position: absolute;
@@ -52,25 +42,33 @@
 
 @media (min-width: 351px) and (max-width: 400px) {
   #home_button {
-    top: 380px;
-    left: 270px;
+    top: 230px;
+    left: 150px;
   }
   .landing {
-    height: 180vh;
-    width: 700px!important;
-    margin-top: 50px!important;
+    
+    width: 400px!important;
+    /* margin-top: 50px!important; */
     background-size: cover!important;
     background-position: center center!important;
-    background-repeat: no-repeat!important;
-    margin-top: 60px !important;
+    /* background-repeat: no-repeat!important;
+    margin: 0px !important; */
     position: absolute!important;
     left: 0px;
     right:0px;
+    height:590px;
+    margin-top: 80px;
+   /* object-fit: fill; */
     
   }
 
   #home_section {
     width: 100%!important;
+    margin: 0px!important;
+    position: absolute!important;
+    left: 0px!important;
+    right:0px;
+
 
   }
 }
