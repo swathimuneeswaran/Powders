@@ -1,0 +1,556 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.contain {
+  background-image: url("https://www.indigo-herbs.co.uk/sites/default/files/styles/full_content_hero_66pc/public/how%20to%20fruit%20%26%20veg-735w.jpg.webp?itok=o6uFUoK3");
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contain::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(73, 71, 71, 0.4);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+.contain-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-container {
+  position: relative;
+  z-index: 2;
+  margin-right: 20px;
+}
+
+.category-dropdown {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: #3c3c3c;
+  cursor: pointer;
+}
+
+.search-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 50%;
+}
+
+.search-icon {
+  color: #3c3c3c;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.search-container input[type="text"] {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+.close-icon {
+  color: #3c3c3c;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.container-fluid {
+  padding: 2rem;
+}
+
+.sticky-sidebar {
+  position: sticky;
+  top: 0;
+  padding: 1rem;
+  background-color: #f1f1f1;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.section-header h5 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.section-header h5:hover {
+  color: #ff5722;
+}
+
+.sec_img {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollable-content {
+  max-height: 100vh;
+  overflow-y: auto;
+  /* background-color: antiquewhite; */
+}
+
+.col-3 h3 {
+  text-align: center;
+  background-color: grey;
+  border-left: 5px solid black;
+  color: white;
+}
+
+.col-9 h1 {
+  text-align: center;
+}
+
+.col-9 {
+  padding: 1rem;
+}
+
+.product_category {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 20px;
+  padding: 60px;
+}
+
+.product_category img {
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.product_category img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product_category .sticky-box {
+  position: sticky;
+  top: 0;
+  background-color: rgb(255, 255, 171);
+  padding: 20px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 160px;
+  height:400px;
+}
+
+.sticky-box:hover {
+  background-color: rgb(250, 250, 139);
+}
+
+.sticky-box span {
+  font-size: 38px;
+  margin-bottom: 5px;
+  color: green;
+}
+
+.sticky-box span:hover {
+  color: #ff5722;
+}
+
+.img-container {
+  position: relative;
+  width: 360px;
+  height: 400px!important;
+}
+
+/* .main-img,
+.hover-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
+} */
+
+
+.main-img {
+  width: 100%; /* Adjust width as needed */
+  opacity: 1; /* Initial opacity for main image */
+  transition: opacity 2s ease-in-out; /* Transition for hover effect */
+  height:400px;
+  cursor: pointer;
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0; /* Initial opacity for overlay */
+  transition: opacity 1s ease-in-out; /* Transition for hover effect */
+}
+.img-container:hover .main-img {
+  opacity: 0; /* Main image fades on hover */
+}
+
+.img-container:hover .overlay {
+  opacity: 1; /* Overlay fades in on hover */
+}
+
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Optional styling for hover images */
+.hover-img:nth-child(1) {
+  animation: swap1 8s infinite alternate ease-in-out; /* Animation for first image */
+}
+
+.hover-img:nth-child(2) {
+  animation: swap2 8s infinite alternate ease-in-out; /* Animation for second image */
+  animation-delay: 2s; /* Delay the second image animation by 2s */
+}
+
+@keyframes swap1 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes swap2 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+/* ProductPage.css */
+.fruits_pro {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  animation: backgroundChange 26s infinite;
+}
+
+.fruits_pro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(73, 71, 71, 0.2);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.category-container {
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Add spacing between elements */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon, .close-icon {
+  cursor: pointer;
+}
+
+.form-select, .form-control {
+  width: auto; /* Ensure the width is auto to fit content */
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05) rotate(2deg); /* Scale and rotate effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .card-img-top  {
+  filter: brightness(0.8); /* Darken the image slightly on hover */
+  
+}
+
+.card:hover .card-button {
+  transform: translate(-50%, -90%);
+  z-index: 10;
+  opacity: 1;
+ }
+
+ .card-button:hover{
+  background-color: #ff5722; /* Change button color */
+  color: white; /* Change button text color */
+ }
+
+.card-img-top {
+  height: 300px; /* Reduced size for images */
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 10px 10px 0 0;
+  transition: filter 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.card-body {
+  background-color: #f8f9fa;
+  border-radius: 0 0 10px 10px;
+  padding-bottom: 50px; /* Add padding to ensure space for the title */
+  position: relative; /* Ensure child elements are positioned relative to the card body */
+}
+
+.card-title {
+  font-size: 20px; /* Font size for the title */
+  color: black; /* Change text color for contrast */
+  position: absolute; /* Positioning for overlay effect */
+  bottom: 0; /* Position at the bottom */
+  left: 0; /* Align to the left */
+  width: 100%; /* Full width for the text box */
+  background: linear-gradient(
+    145deg,
+    rgba(197, 224, 180, 1) 35%,
+    rgba(255, 236, 171, 1) 50%
+  ); /* Decorative gradient background */
+  padding: 8px; /* Padding for text box */
+  text-align: center; /* Center the text */
+  box-sizing: border-box; /* Include padding in width calculations */
+  margin: 0; /* Remove any default margin */
+  z-index: 2; /* Ensure the title is above other elements */
+}
+
+.card h5 {
+  position: absolute; /* Positioning for the <h5> element */
+  bottom: 0; /* Position at the bottom of the card */
+  left: 0; /* Align to the left */
+  width: 100%; /* Full width for the text box */
+  background: linear-gradient(
+    145deg,
+    rgba(255, 236, 171, 1) 35%,
+    rgba(197, 224, 180, 1) 50%
+  ); /* Decorative gradient background */
+  padding: 8px; /* Padding for text box */
+  text-align: center; /* Center the text */
+  box-sizing: border-box; /* Include padding in width calculations */
+  margin: 0; /* Remove any default margin */
+  z-index: 2; /* Ensure the title is above other elements */
+}
+
+.card-button {
+  transform: translate(-50%, 155%);
+  width:auto;
+  border-radius: 10px;
+  border: none;
+  background-color: green;
+  color: #fff;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  transition: 0.3s ease-out;
+ }
+
+@keyframes backgroundChange {
+  0% {
+    background-image: url("https://t4.ftcdn.net/jpg/06/59/41/97/360_F_659419733_tK2TEQaUWYUFHsDjswKPfrXfHZ6UI3uD.jpg");
+  }
+  25% {
+    background-image: url("https://i.ytimg.com/vi/XK5pu85MK_I/sddefault.jpg");
+  }
+  50% {
+    background-image: url("https://t3.ftcdn.net/jpg/06/59/55/46/360_F_659554655_nmxOg91doPxYxbfqCS8Nd4GwYvVFALWh.jpg");
+  }
+  75% {
+    background-image: url("https://ethicalnaturals.com/wp-content/uploads/2023/08/sfb-fruits.jpg");
+  }
+  100% {
+    background-image: url("https://5.imimg.com/data5/PC/QR/MY-43760723/dehydrated-vegetables-powder.png");
+  }
+}
+
+
+/* ProductDescription.js */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #2f2f2f;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.product-page {
+  display: flex;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #3e3e3e;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.product-info {
+  display: flex;
+  width: 100%;
+}
+
+.product-images {
+  width: 50%; /* Adjust width for images */
+  display: flex;
+  flex-direction: column; /* Stack images vertically */
+  align-items: center; /* Center images horizontally */
+  padding-right: 20px; /* Space between images and content */
+  margin-top: 80px;
+  gap:20px;
+}
+
+.main-image {
+  width: 80%; /* Adjust width as needed */
+  height: auto;
+  border-radius: 10px;
+}
+
+.side-image {
+  width: 80%; /* Adjust width as needed */
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px; /* Space between images */
+}
+
+.vertical-line {
+  width: 2px; /* Width of the vertical line */
+  background-color: #f4a261; /* Color of the vertical line */
+  height: auto; /* Automatically adjust height */
+  margin: 0 20px; /* Space around the line */
+}
+
+.product-content {
+  width: 50%; /* Adjust width for content */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+}
+
+.product-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #f9c74f; /* Example color for title */
+}
+
+.product-subtitle {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #f4a261; /* Example color for subtitle */
+}
+
+.product-features h2,
+.product-description h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #f4a261;
+  font-weight: bold; /* Make the headings bold */
+}
+
+.product-features ul {
+  list-style-type: none;
+  padding: 0;
+  line-height: 1.8;
+}
+
+.product-features ul li {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.product-description p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e9e9e9;
+}
+
+/* New styles for feature headings */
+.product-features li {
+  
+  color: #f9c74f; /* Set a color for feature titles */
+}
+
+.product-features span{
+  font-weight: bold;
+}
