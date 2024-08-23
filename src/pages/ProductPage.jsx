@@ -1,17 +1,22 @@
-import React from 'react'
-import SearchBar from '../component/product/SearchBar'
-import "../styles/ProductPage.css";
+import React, { useState } from 'react';
+import SearchBar from '../component/product/SearchBar';
 import ProductContent from '../component/product/ProductContent';
 import Footer from '../component/Footer';
 
 const ProductPage = () => {
-  return (
-    <div style={{marginTop:"100px"}}>
-        <SearchBar />
-        <ProductContent />
-        <Footer />
-    </div>
-  )
-}
+  const [searchQuery, setSearchQuery] = useState('');
 
-export default ProductPage
+  const handleSearch = (query) => {
+    setSearchQuery(query.toLowerCase());
+  };
+
+  return (
+    <div style={{ marginTop: "100px" }}>
+      <SearchBar onSearch={handleSearch} />
+      <ProductContent searchQuery={searchQuery} category="fruits" />
+      <Footer />
+    </div>
+  );
+};
+
+export default ProductPage;

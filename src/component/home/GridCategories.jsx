@@ -37,7 +37,7 @@ import veg_poster from "../../assets/images/veg_poster.jpg";
 import rose_poster from "../../assets/images/rose_poster.jpg";
 import beetroot_flakes from "../../assets/images/beetroot_flakes.jpg";
 import bitter_powder from "../../assets/images/bitter_powder.jpg";
-import ginger_nobg from "../../assets/images/ginger_nobg.png";
+// import ginger_nobg from "../../assets/images/ginger_nobg.png";
 import peas_powder from "../../assets/images/peas_powder.jpg";
 import new_poster from "../../assets/images/banner2.jpg";
 function GridCategories() {

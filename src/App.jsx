@@ -14,16 +14,9 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/" element={<Navbar />}>
           <Route path="home" element={<HomePage />} />
-        </Route>
-        <Route path="/" element={<Navbar />}>
-        <Route path="product" element={<ProductPage />} />
-        </Route>
-        <Route path="/" element={<Navbar />}>
-        <Route path="fruits" element={<ProductFruit />} />
-        </Route>
-
-        <Route path="/" element={<Navbar />}>
-        <Route path="details" element={<ProductDescription />} />
+          <Route path="product" element={<ProductPage />} />
+          <Route path="fruits" element={<ProductFruit />} />
+          <Route path="details/:id" element={<ProductDescription />} />
         </Route>
       </Routes>
     </div>

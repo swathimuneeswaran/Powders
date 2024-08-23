@@ -1,62 +1,132 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import '../styles/ProductPage.css';
-import apple_flake from "../assets/fruitflakes/apple_flake.png";
-import apple_des_flake from "../assets/fruitpowder/apple_des_flake.jpeg";
-
-
-const product_description = [{
-  id: 1,
-  name: "Dehydrated Apple Flakes",
-  image: apple_flake,
-  side_image:apple_des_flake,
-  premium_quality: "We source our apples from trusted orchards and employ advanced dehydration techniques to preserve maximum flavour and nutrients.",
-  all_natural: "Free from artificial color, flavours, and preservatives, our apple flakes offer pure, natural goodness.",
-  rich_flavour: "The dehydration process intensifies the inherent sweetness and tartness of apples, enhancing the taste of your dishes.",
-  convenient: "Easy to store and use, our apple flakes eliminate the need for peeling and slicing fresh apples.",
-  versatile: "Perfect for a wide range of recipes including pies, muffins, sauces, granolas, salads, and more.",
-  nutritional_benefits: "Apples are renowned for their nutritional value, and our dehydrated flakes retain these benefits. They are rich in dietary fibre, vitamins, and antioxidants, promoting overall health and well-being.",
-  how_to_use: "• Rehydration: Simply soak the flakes in warm water or juice for about 10 minutes to restore their natural texture and flavour.",
-  how_to_use2:"• Direct Use: Add directly to your recipes during cooking or baking to impart a concentrated apple flavour.",
-  packaging: "Our Dehydrated Apple Flakes are available in various packaging sizes to suit your requirements, ensuring freshness and extending shelf life. Whether for household use, retail sale, or industrial applications, our packaging preserves the quality of the product."
-}];
+import { products } from "../productslist/product.js";
+import RelatedProducts from '../component/product/RelatedProducts.jsx';
+import Footer from '../component/Footer.jsx';
 
 const ProductDescription = () => {
+  const { id } = useParams(); // Get the product ID from the URL
+  const product = products.find(item => item.id === parseInt(id)); // Find the product by ID
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
+
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isHowToUseOpen, setIsHowToUseOpen] = useState(false);
+  const [isPackagingOpen, setIsPackagingOpen] = useState(false);
+
+  useEffect(() => {
+    // Scroll to the top when the component mounts or the product ID changes
+    window.scrollTo(0, 0);
+
+    const imageInterval = setInterval(() => {
+      setCurrentImage((prevIndex) => 
+        prevIndex === product.side_images.length ? 0 : prevIndex + 1
+      );
+    }, 2000); // Change image every 2 seconds
+
+    return () => clearInterval(imageInterval); // Cleanup interval on component unmount
+  }, [product.side_images.length, id]); // Add `id` to dependency array to trigger scroll on ID change
+
+  const handleImageClick = (index) => {
+    setCurrentImage(index);
+  };
+
+  const toggleHowToUse = () => {
+    setIsHowToUseOpen(!isHowToUseOpen);
+  };
+
+  const togglePackaging = () => {
+    setIsPackagingOpen(!isPackagingOpen);
+  };
+
+  // Find related products (for simplicity, assume the related products are from the same category)
+  const relatedProducts = products.filter(
+    item => item.category === product.category && item.id !== product.id
+  ).slice(0, 4); // Get the first 4 related products
+
   return (
-    <div className="product-page" style={{marginTop: "180px"}}>
-      {product_description.map((product) => (
-        <div className="product-info" key={product.id}>
-          <div className="product-images">
-            <img src={product.image} alt="Dehydrated Apple Flakes" className="main-image" />
-            <img src={product.side_image} alt="Additional Product Image" className="side-image" />
+    <>
+    <div className="product-page">
+      <div className="product-info">
+        <div className="product-images">
+          <div className={`main-image-container ${isHowToUseOpen || isPackagingOpen ? 'expanded' : ''}`}>
+            <img
+              src={currentImage === 0 ? product.image : product.side_images[currentImage - 1]}
+              alt="Main Product Image"
+              className={`main-image ${isHowToUseOpen || isPackagingOpen ? 'expanded' : ''}`}
+            />
           </div>
-          
-          <div className="vertical-line"></div> {/* Vertical line separator */}
-
-          <div className="product-content">
-            <h1 className="product-title">{product.name}</h1>
-            <p className="product-subtitle">Premium Quality & Nutritional Benefits</p>
-
-            <div className="product-features">
-              <h2>Features</h2>
-              <ul>
-                <li><span>Premium Quality: </span>{product.premium_quality}</li>
-                <li><span>All Natural:</span> {product.all_natural}</li>
-                <li><span>Rich Flavour: </span>{product.rich_flavour}</li>
-                <li><span>Convenient: </span>{product.convenient}</li>
-                <li><span>Versatile: </span>{product.versatile}</li>
-                <li><span>Nutritional Benefits: </span>{product.nutritional_benefits}</li>
-              </ul>
+          <div className="side-images">
+            <div
+              className={`side-image ${currentImage === 0 ? 'active expanded' : ''}`}
+              onClick={() => handleImageClick(0)}
+            >
+              <img
+                src={product.image}
+                alt="Main Product Image"
+              />
             </div>
-
-            <div className="product-description">
+            {product.side_images.map((side_image, index) => (
+              <div
+                key={index}
+                className={`side-image ${currentImage === index + 1 ? 'active expanded' : ''}`}
+                onClick={() => handleImageClick(index + 1)}
+              >
+                <img
+                  src={side_image}
+                  alt={`Additional Product Image ${index + 1}`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="product-content1">
+          <h1 className="product-title">{product.name}</h1>
+          <p className="product-subtitle"> Nutritional Benefits & Features</p>
+          <p>{product.nutritional_benefits}</p>
+          <div className="product-features">
+            <h2>Features</h2>
+            <ul>
+              {product.features.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex-boxes">
+            <div
+              className={`toggle-box ${isHowToUseOpen ? 'open' : ''}`}
+              onClick={toggleHowToUse}
+            >
               <h2>How to Use</h2>
-              <p>{product.how_to_use}</p>
-              <p>{product.how_to_use2}</p>
+              <div className={`box-content ${isHowToUseOpen ? 'expanded' : ''}`}>
+                <ul>
+                  {product.how_to_use.map((instruction, index) => (
+                    <li key={index}>{instruction}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div
+              className={`toggle-box ${isPackagingOpen ? 'open' : ''}`}
+              onClick={togglePackaging}
+            >
+              <h2>Packaging</h2>
+              <div className={`box-content ${isPackagingOpen ? 'expanded' : ''}`}>
+                <p>{product.packaging}</p>
+              </div>
             </div>
           </div>
         </div>
-      ))}
+      </div>
+      {/* Related Products Section */}
+      <RelatedProducts relatedProducts={relatedProducts} />
+     
     </div>
+    <Footer />
+    </>
   );
 };
 

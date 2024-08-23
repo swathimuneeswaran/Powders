@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+    onSearch(event.target.value);
+  };
+
+  const handleClear = () => {
+    setInputValue('');
+    onSearch(''); // Notify parent component to clear search
+  };
+
   return (
     <div className='contain'>
       <div className='contain-content'>
-        <div className="category-container">
-          <select className="category-dropdown">
-            <option value="all">All Categories</option>
-            <option value="fruits">Fruits</option>
-            <option value="vegetables">Vegetables</option>
-            <option value="flowers">Flowers</option>
-            <option value="herbs">Herbs</option>
-          </select>
-        </div>
         <div className="search-container">
           <SearchIcon className="search-icon" />
-          <input type="text" placeholder="Search..." />
-          <CloseIcon className="close-icon" />
+          <input
+            type="text"
+            placeholder="Search..."
+            value={inputValue}
+            onChange={handleChange}
+          />
+          {inputValue && (
+            <CloseIcon 
+              className="close-icon" 
+              onClick={handleClear} 
+            />
+          )}
         </div>
       </div>
     </div>
