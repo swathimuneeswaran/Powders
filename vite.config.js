@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['@mui/icons-material/phone']
+      // Remove the external option if it's not needed
+      // external: ['@mui/icons-material/phone']
     }
   }
 })
