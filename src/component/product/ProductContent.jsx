@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import side1 from "../../assets/images/side1.webp";
@@ -11,14 +9,7 @@ import side5 from "../../assets/images/side5.jpg";
 import ProductFruit from "./ProductFruit";
 
 const ProductContent = ({ searchQuery }) => {
-  const [openSections, setOpenSections] = useState({
-    fruits: false,
-    vegetables: false,
-    leafyGreens: false,
-    flowers: false,
-  });
-
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -33,15 +24,14 @@ const ProductContent = ({ searchQuery }) => {
     };
   }, []);
 
-  const toggleSection = (section) => {
-    setOpenSections((prevState) => ({
-      ...prevState,
-      [section]: !prevState[section],
-    }));
-  };
-
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+    setSelectedCategories((prevCategories) => {
+      if (prevCategories.includes(category)) {
+        return prevCategories.filter((item) => item !== category);
+      } else {
+        return [...prevCategories, category];
+      }
+    });
   };
 
   const responsive = {
@@ -70,42 +60,96 @@ const ProductContent = ({ searchQuery }) => {
             <h3>Varieties</h3>
             <div className="section">
               <div className="section-header">
-                <h5 onClick={() => handleCategoryClick("fruit flakes")}>Fruits</h5>
+                <h5 onClick={() => handleCategoryClick("fruit flakes", "fruit powder")}>Fruits</h5>
               </div>
               <ul>
-                <li style={{ cursor: "pointer" }} onClick={() => handleCategoryClick("fruit flakes")}>
-                  Fruits Flakes
+                <li>
+                  <input
+                    type="checkbox"
+                    id="fruitFlakes"
+                    name="fruitFlakes"
+                    checked={selectedCategories.includes("fruit flakes")}
+                    onChange={() => handleCategoryClick("fruit flakes")}
+                  />
+                  <label htmlFor="fruitFlakes">
+                    Fruits Flakes
+                  </label>
                 </li>
-                <li style={{ cursor: "pointer" }} onClick={() => handleCategoryClick("fruit powder")}>
-                  Fruits Powder
+                <li>
+                  <input
+                    type="checkbox"
+                    id="fruitPowder"
+                    name="fruitPowder"
+                    checked={selectedCategories.includes("fruit powder")}
+                    onChange={() => handleCategoryClick("fruit powder")}
+                  />
+                  <label htmlFor="fruitPowder">
+                    Fruits Powder
+                  </label>
                 </li>
               </ul>
             </div>
 
             <div className="section">
               <div className="section-header">
-                <h5 onClick={() => handleCategoryClick("vegetable flakes")}>Vegetables</h5>
+                <h5 onClick={() => handleCategoryClick("vegetable flakes", "vegetable powder")}>Vegetables</h5>
               </div>
               <ul>
-                <li style={{ cursor: "pointer" }} onClick={() => handleCategoryClick("vegetable flakes")}>
-                  Vegetable Flakes
+                <li>
+                  <input
+                    type="checkbox"
+                    id="vegetableFlakes"
+                    name="vegetableFlakes"
+                    checked={selectedCategories.includes("vegetable flakes")}
+                    onChange={() => handleCategoryClick("vegetable flakes")}
+                  />
+                  <label htmlFor="vegetableFlakes">
+                    Vegetable Flakes
+                  </label>
                 </li>
-                <li style={{ cursor: "pointer" }} onClick={() => handleCategoryClick("vegetable powder")}>
-                  Vegetable Powder
+                <li>
+                  <input
+                    type="checkbox"
+                    id="vegetablePowder"
+                    name="vegetablePowder"
+                    checked={selectedCategories.includes("vegetable powder")}
+                    onChange={() => handleCategoryClick("vegetable powder")}
+                  />
+                  <label htmlFor="vegetablePowder">
+                    Vegetable Powder
+                  </label>
                 </li>
               </ul>
             </div>
 
             <div className="section">
               <div className="section-header">
-                <h5 onClick={() => handleCategoryClick("leaf flakes")}>Leafy greens</h5>
+                <h5 onClick={() => handleCategoryClick("leaf flakes", "leaf powder")}>Leafy Greens</h5>
               </div>
               <ul>
-                <li style={{ cursor: "pointer" }} onClick={() => handleCategoryClick("leaf flakes")}>
-                  Leaf flakes
+                <li>
+                  <input
+                    type="checkbox"
+                    id="leafFlakes"
+                    name="leafFlakes"
+                    checked={selectedCategories.includes("leaf flakes")}
+                    onChange={() => handleCategoryClick("leaf flakes")}
+                  />
+                  <label htmlFor="leafFlakes">
+                    Leaf Flakes
+                  </label>
                 </li>
-                <li style={{ cursor: "pointer" }} onClick={() => handleCategoryClick("leaf Powder")}>
-                  Leaf powder
+                <li>
+                  <input
+                    type="checkbox"
+                    id="leafPowder"
+                    name="leafPowder"
+                    checked={selectedCategories.includes("leaf powder")}
+                    onChange={() => handleCategoryClick("leaf powder")}
+                  />
+                  <label htmlFor="leafPowder">
+                    Leaf Powder
+                  </label>
                 </li>
               </ul>
             </div>
@@ -115,11 +159,29 @@ const ProductContent = ({ searchQuery }) => {
                 <h5 onClick={() => handleCategoryClick("rose")}>Flowers</h5>
               </div>
               <ul>
-                <li style={{ cursor: "pointer" }} onClick={() => handleCategoryClick("rose")}>
-                  Rose Flakes
+                <li>
+                  <input
+                    type="checkbox"
+                    id="roseFlakes"
+                    name="roseFlakes"
+                    checked={selectedCategories.includes("rose")}
+                    onChange={() => handleCategoryClick("rose")}
+                  />
+                  <label htmlFor="roseFlakes">
+                    Rose Flakes
+                  </label>
                 </li>
-                <li style={{ cursor: "pointer" }} onClick={() => handleCategoryClick("rose")}>
-                  Rose Powders
+                <li>
+                  <input
+                    type="checkbox"
+                    id="rosePowder"
+                    name="rosePowder"
+                    checked={selectedCategories.includes("rose")}
+                    onChange={() => handleCategoryClick("rose")}
+                  />
+                  <label htmlFor="rosePowder">
+                    Rose Powder
+                  </label>
                 </li>
               </ul>
             </div>
@@ -139,32 +201,88 @@ const ProductContent = ({ searchQuery }) => {
                 dotListClass="custom-dot-list-style"
                 itemClass="carousel-item-padding-40-px"
               >
-              
-                  <div className='variety_side_img'>
-                    <img src={side1} width="90%" alt="Sidebar" className="sec_img" />
-                  </div>
-                  <div className='variety_side_img'>
-                    <img src={side2} width="90%" alt="Sidebar" className="sec_img" />
-                  </div>
-                  <div className='variety_side_img'>
-                    <img src={side3} width="90%" alt="Sidebar" className="sec_img" />
-                  </div>
-                  <div className='variety_side_img'>
-                    <img src={side4} width="90%" alt="Sidebar" className="sec_img" />
-                  </div>
-                  <div className='variety_side_img'>
-                    <img src={side5} width="90%" alt="Sidebar" className="sec_img" />
-                  </div>
-               
+                <div className='variety_side_img'>
+                  <img src={side1} width="100%" alt="Sidebar" className="sec_img" />
+                </div>
+                <div className='variety_side_img'>
+                  <img src={side2} width="100%" alt="Sidebar" className="sec_img" />
+                </div>
+                <div className='variety_side_img'>
+                  <img src={side3} width="100%" alt="Sidebar" className="sec_img" />
+                </div>
+                <div className='variety_side_img'>
+                  <img src={side4} width="100%" alt="Sidebar" className="sec_img" />
+                </div>
+                <div className='variety_side_img'>
+                  <img src={side5} width="100%" alt="Sidebar" className="sec_img" />
+                </div>
               </Carousel>
             )}
           </div>
 
           <div className="col-9">
-            <ProductFruit searchQuery={searchQuery} category={selectedCategory} />
+            <ProductFruit searchQuery={searchQuery} categories={selectedCategories} />
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        input[type="checkbox"] {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+
+        input[type="checkbox"] + label {
+          position: relative;
+          padding-left: 30px;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        input[type="checkbox"] + label:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 5;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #000;
+          background-color: #fff;
+          border-radius: 3px;
+          transition: background-color 0.3s ease;
+        }
+
+        input[type="checkbox"]:checked + label:before {
+          background-color: green;
+          border-color: green;
+        }
+
+        input[type="checkbox"]:checked + label:after {
+          content: '✓';
+          position: absolute;
+          left: 3px;
+          top: 4px;
+          font-size: 12px;
+          color: #fff;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+        }
+
+        li {
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+        }
+
+        label {
+          margin-left: 10px;
+        }
+      `}</style>
     </>
   );
 };

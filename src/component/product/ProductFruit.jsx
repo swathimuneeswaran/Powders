@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import "../../styles/ProductPage.css";
 import { products } from "../../productslist/product.js";
 
-const ProductFruit = ({ searchQuery = '', category = '' }) => {
-  // Ensure query and category are strings and provide default values
-  const query = searchQuery ? searchQuery.toLowerCase() : '';
-  const cat = category || ''; // No conversion to lowercase for category
+const ProductFruit = ({ searchQuery = '', categories = [] }) => {
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const scrollableContentRef = useRef(null); // Create a ref for the scrollable content
 
-  // Check if products array is available
-  if (!Array.isArray(products)) {
-    console.error("Products array is not available.");
-    return <div>Error loading products.</div>;
-  }
+  // Function to filter products by categories and search query
+  const filterProducts = () => {
+    let filtered = products;
 
-  // Function to filter products by category
-  const filterByCategory = (products, category) => {
-    return products.filter(product =>
-      product.category && product.category.includes(category)
-    );
+    if (categories.length > 0) {
+      filtered = filtered.filter(product =>
+        categories.some(category => product.category && product.category.includes(category))
+      );
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter(product =>
+        product.name && product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredProducts(filtered);
   };
 
-  // Filter products based on category first
-  const categoryFilteredProducts = filterByCategory(products, cat);
+  useEffect(() => {
+    filterProducts();
 
-  // Filter category-filtered products based on search query
-  const filteredProducts = categoryFilteredProducts.filter(product =>
-    product.name && product.name.toLowerCase().includes(query)
-  );
+    // Scroll to the top of the scrollable content when products are filtered
+    if (scrollableContentRef.current) {
+      scrollableContentRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Optional: Adds a smooth scrolling effect
+      });
+    }
+  }, [searchQuery, categories]);
 
   return (
     <div className="container">
@@ -35,12 +44,16 @@ const ProductFruit = ({ searchQuery = '', category = '' }) => {
         <h1 className="text-center">Our <span style={{ color: "green" }}>Products</span></h1>
       </div>
 
-      <div className="scrollable-content">
-        <div className="row" >
+      <div 
+        className="scrollable-content" 
+        ref={scrollableContentRef} // Assign the ref to the scrollable content
+        style={{ maxHeight: '100vh', overflowY: 'auto' }} // Ensure it is scrollable
+      >
+        <div className="row">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((item, id) => (
-              <div key={id} className="col-12 col-sm-12 col-md-4 mb-4">
-                <div className="card h-100">
+              <div key={id} className="col-5 col-sm-6 col-md-3 mb-4 column_product">
+                <div className="card ">
                   <Link to={`/details/${item.id}`}>
                     <button className="card-button">More Info</button>
                   </Link>

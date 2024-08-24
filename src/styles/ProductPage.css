@@ -1,5 +1,6 @@
 /* Default styles for larger screens */
 /* Search container style */
+
 .contain {
   background-image: url("https://www.indigo-herbs.co.uk/sites/default/files/styles/full_content_hero_66pc/public/how%20to%20fruit%20%26%20veg-735w.jpg.webp?itok=o6uFUoK3");
   height: 170px;
@@ -124,6 +125,7 @@
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 10px;
+  
   transition: color 0.3s ease;
   cursor: pointer;
 }
@@ -133,7 +135,7 @@
 }
 
 .sec_img {
-  width: 100%;
+  width: 100%!important;
   height: 300px;
   background-size: cover;
   background-position: center;
@@ -146,6 +148,8 @@
   max-height: 100vh;
   overflow-y: auto;
   flex:1;
+  margin-top: 30px;
+  
   /* background-color: antiquewhite; */
 }
 
@@ -166,6 +170,9 @@
   text-align: center;
 }
 
+.section li{
+  list-style: none;
+}
 
 
 
@@ -175,14 +182,17 @@
 @media (max-width: 600px) {
 
   .sticky-sidebar {
-    width: 100%!important;
+    width: 90%!important;
     text-align: center;
     margin-bottom: 1rem;
     padding: 0;
+    margin-top: 20px!important;
   }
   
-  .sticky-sidebar h3 {
-    text-align: center!important;
+  .section {
+    display: flex;
+    justify-content: center;
+   
   }
   
   .variety_side_img {
@@ -196,18 +206,64 @@
   .section {
     width: 100% !important;
   }
-  
-
+  .scrollable-content{
+    padding-top: 30px;
+  }
+ 
   
   /* Ensure the right content area occupies full width */
   .col-9 {
     width: 100%!important;
     padding: 0; /* Remove padding for full width */
     margin: 0; /* Remove margin */
+    
   }
 
+  .column_product{
+    width: 100%;
+    box-sizing: content-box!important;
+  }
+ .row{
+   display: flex;
+   padding:0px !important;
+   justify-content: center;
+   align-items: center;
+ 
+   
+ }
+ .card{
+   height: 250px !important;
+   
+  
+ }
+ .card-img-top{
+   width: 200px;
+   height: 180px!important;
+ }
 
+ .container-fluid{
+  padding: 0px!important;
+  margin-bottom: 50px;
+  width: 100%!important;
 
+  
+ }
+ .container{
+  padding: 0px!important;
+  margin-top: 30px!important;
+  width: 100%!important;
+  
+ }
+ .col-9{
+  flex:0 0 auto;
+  margin: 0px!important;
+  padding: 0px!important;
+  max-width: 100%!important;
+  width: 100% !important;
+  
+ }
+
+ 
 
  
 }
@@ -216,15 +272,6 @@
 
 
 
-@media screen and (min-width: 300px) and (max-width: 700px) {
-  .carousel-container {
-    display: none;
-  }
-
-  .variety_side_img {
-    display: none;
-  }
-}
 
 
 
@@ -242,12 +289,19 @@
 
 /* ProductPage.css */
 
+.col-9 {
+  flex: 0 0 75%; /* Take up 75% of the row width */
+  max-width: 75%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
 
 
 .card {
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  height: 300px ;
 }
 
 .card:hover {
@@ -339,26 +393,19 @@
   transition: 0.3s ease-out;
  }
 
-@keyframes backgroundChange {
-  0% {
-    background-image: url("https://t4.ftcdn.net/jpg/06/59/41/97/360_F_659419733_tK2TEQaUWYUFHsDjswKPfrXfHZ6UI3uD.jpg");
-  }
-  25% {
-    background-image: url("https://i.ytimg.com/vi/XK5pu85MK_I/sddefault.jpg");
-  }
-  50% {
-    background-image: url("https://t3.ftcdn.net/jpg/06/59/55/46/360_F_659554655_nmxOg91doPxYxbfqCS8Nd4GwYvVFALWh.jpg");
-  }
-  75% {
-    background-image: url("https://ethicalnaturals.com/wp-content/uploads/2023/08/sfb-fruits.jpg");
-  }
-  100% {
-    background-image: url("https://5.imimg.com/data5/PC/QR/MY-43760723/dehydrated-vegetables-powder.png");
-  }
-}
+ @media screen and (min-width: 770px) and (max-width: 980px)
+ {
+   .column_product{
+     flex-basis: 30%!important;
+     width: 100%!important;
+   }
+   .card{
+    height: 270px!important;
+    width:200px!important;
+   }
+ }
 
 /* Base Styles */
-
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
@@ -387,47 +434,31 @@ body {
 
 .product-images {
   display: flex;
-  flex-direction: column;
-  width: 50%;
-  
-}
-
-.main-image-container {
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.main-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.main-image:hover {
-  transform: scale(1.05);
+  flex-direction: row;
+  width: 60%;
 }
 
 .side-images {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 27%;
+  
 }
 
 .side-image {
-  width: 30%;
+  width: 100%;
   cursor: pointer;
   border-radius: 10px;
   overflow: hidden;
+  
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .side-image img {
   width: 100%;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -437,11 +468,31 @@ body {
 }
 
 .side-image.active img {
-  border: 2px solid #f4a261;
+  border: 3px solid green;
+}
+
+.main-image-container {
+  width: 90%;
+  
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+}
+
+.main-image {
+  width: 100%;
+  height: 640px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.main-image:hover {
+  transform: scale(1.05);
 }
 
 .product-content1 {
-  width: 70%;
+  width: 50%;
   background-color: #fff;
   padding: 30px;
   border-radius: 10px;
@@ -547,33 +598,58 @@ body {
 
 /* Responsive Styles */
 
+/* Responsive Styles */
+
 @media (max-width: 768px) {
   .product-info {
     flex-direction: column;
     align-items: center;
-   
   }
 
-  .product-images,
-  .product-content1 {
-    width: 100%;
-  }
-
-  .main-image-container {
-    height: 300px;
+  .product-images {
+    width: 100% !important;
+    flex-direction: column-reverse;
   }
 
   .side-images {
     flex-direction: row;
     overflow-x: auto;
+    height: 200px !important;
+    width: 100%;
+    margin-top: 10px;
   }
 
   .side-image {
-    width: 25%;
+    width: 100%;
+ 
+  }
+ .side-image img{
+  height:150px !important;
+ }
+  .product-page {
+    margin-top: 130px;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
   }
 
-  .side-image img {
-    height: 100px;
+  .product-info {
+    padding: 0;
+    width: 100%; /* Ensure the product-info container takes full width */
+  }
+
+  .main-image-container {
+    width: 100%;
+    margin-left: 0; /* Remove any left margin to avoid restricting width */
+    padding: 0; /* Ensure no padding is applied */
+  }
+
+  .main-image {
+    width: 100%; /* Full width */
+    height: auto; /* Auto height to maintain aspect ratio */
+    margin-right: 0px;
+    padding: 0; /* Ensure no padding is applied */
   }
 
   .product-title {
@@ -588,9 +664,9 @@ body {
   .product-description h2 {
     font-size: 20px;
   }
-
-  .product-features ul li {
-    font-size: 14px;
+  .product-content1{
+    width: 100%;
+    margin-top: 0;
   }
 }
 
@@ -600,20 +676,21 @@ body {
 .related-products {
   margin-top: 6rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #f8f8f8, #e8e8e8);
+  /* background: linear-gradient(135deg, #f8f8f8, #e8e8e8); */
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
   width: 90%; /* Increased container width */
   margin-left: auto;
   margin-right: auto;
 }
 
 .related-products h2 {
-  font-size: 2rem;
+  font-size: 40px;
+
   margin-bottom: 1.5rem;
   color: #333;
   text-align: center; /* Centered heading text */
-  font-weight: 600;
+  font-weight: bolder;
 }
 
 .related-products-grid {

@@ -4,7 +4,7 @@ import Navbar from "./component/Navbar";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import ProductPage from "./pages/ProductPage";
-import ProductFruit from "./component/product/ProductFruit";
+// import ProductFruit from "./component/product/ProductFruit";
 import ProductDescription from "./pages/ProductDescription";
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
         <Route path="/" element={<Navbar />}>
           <Route path="home" element={<HomePage />} />
           <Route path="product" element={<ProductPage />} />
-          <Route path="fruits" element={<ProductFruit />} />
+          {/* <Route path="fruits" element={<ProductFruit />} /> */}
           <Route path="details/:id" element={<ProductDescription />} />
         </Route>
       </Routes>
