@@ -24,13 +24,19 @@ const ProductContent = ({ searchQuery }) => {
     };
   }, []);
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = (categories) => {
     setSelectedCategories((prevCategories) => {
-      if (prevCategories.includes(category)) {
-        return prevCategories.filter((item) => item !== category);
-      } else {
-        return [...prevCategories, category];
-      }
+      const newCategories = new Set(prevCategories);
+
+      categories.forEach(category => {
+        if (newCategories.has(category)) {
+          newCategories.delete(category);
+        } else {
+          newCategories.add(category);
+        }
+      });
+
+      return Array.from(newCategories);
     });
   };
 
@@ -60,7 +66,7 @@ const ProductContent = ({ searchQuery }) => {
             <h3>Varieties</h3>
             <div className="section">
               <div className="section-header">
-                <h5 onClick={() => handleCategoryClick("fruit flakes", "fruit powder")}>Fruits</h5>
+                <h5 onClick={() => handleCategoryClick(["fruit flakes", "fruit powder"])}>Fruits</h5>
               </div>
               <ul>
                 <li>
@@ -69,7 +75,7 @@ const ProductContent = ({ searchQuery }) => {
                     id="fruitFlakes"
                     name="fruitFlakes"
                     checked={selectedCategories.includes("fruit flakes")}
-                    onChange={() => handleCategoryClick("fruit flakes")}
+                    onChange={() => handleCategoryClick(["fruit flakes"])}
                   />
                   <label htmlFor="fruitFlakes">
                     Fruits Flakes
@@ -81,7 +87,7 @@ const ProductContent = ({ searchQuery }) => {
                     id="fruitPowder"
                     name="fruitPowder"
                     checked={selectedCategories.includes("fruit powder")}
-                    onChange={() => handleCategoryClick("fruit powder")}
+                    onChange={() => handleCategoryClick(["fruit powder"])}
                   />
                   <label htmlFor="fruitPowder">
                     Fruits Powder
@@ -92,7 +98,7 @@ const ProductContent = ({ searchQuery }) => {
 
             <div className="section">
               <div className="section-header">
-                <h5 onClick={() => handleCategoryClick("vegetable flakes", "vegetable powder")}>Vegetables</h5>
+                <h5 onClick={() => handleCategoryClick(["vegetable flakes", "vegetable powder"])}>Vegetables</h5>
               </div>
               <ul>
                 <li>
@@ -101,7 +107,7 @@ const ProductContent = ({ searchQuery }) => {
                     id="vegetableFlakes"
                     name="vegetableFlakes"
                     checked={selectedCategories.includes("vegetable flakes")}
-                    onChange={() => handleCategoryClick("vegetable flakes")}
+                    onChange={() => handleCategoryClick(["vegetable flakes"])}
                   />
                   <label htmlFor="vegetableFlakes">
                     Vegetable Flakes
@@ -113,7 +119,7 @@ const ProductContent = ({ searchQuery }) => {
                     id="vegetablePowder"
                     name="vegetablePowder"
                     checked={selectedCategories.includes("vegetable powder")}
-                    onChange={() => handleCategoryClick("vegetable powder")}
+                    onChange={() => handleCategoryClick(["vegetable powder"])}
                   />
                   <label htmlFor="vegetablePowder">
                     Vegetable Powder
@@ -124,7 +130,7 @@ const ProductContent = ({ searchQuery }) => {
 
             <div className="section">
               <div className="section-header">
-                <h5 onClick={() => handleCategoryClick("leaf flakes", "leaf powder")}>Leafy Greens</h5>
+                <h5 onClick={() => handleCategoryClick(["leaf flakes", "leaf powder"])}>Leafy Greens</h5>
               </div>
               <ul>
                 <li>
@@ -133,7 +139,7 @@ const ProductContent = ({ searchQuery }) => {
                     id="leafFlakes"
                     name="leafFlakes"
                     checked={selectedCategories.includes("leaf flakes")}
-                    onChange={() => handleCategoryClick("leaf flakes")}
+                    onChange={() => handleCategoryClick(["leaf flakes"])}
                   />
                   <label htmlFor="leafFlakes">
                     Leaf Flakes
@@ -145,7 +151,7 @@ const ProductContent = ({ searchQuery }) => {
                     id="leafPowder"
                     name="leafPowder"
                     checked={selectedCategories.includes("leaf powder")}
-                    onChange={() => handleCategoryClick("leaf powder")}
+                    onChange={() => handleCategoryClick(["leaf powder"])}
                   />
                   <label htmlFor="leafPowder">
                     Leaf Powder
@@ -156,7 +162,7 @@ const ProductContent = ({ searchQuery }) => {
 
             <div className="section">
               <div className="section-header">
-                <h5 onClick={() => handleCategoryClick("rose")}>Flowers</h5>
+                <h5 onClick={() => handleCategoryClick(["rose"])}>Flowers</h5>
               </div>
               <ul>
                 <li>
@@ -165,7 +171,7 @@ const ProductContent = ({ searchQuery }) => {
                     id="roseFlakes"
                     name="roseFlakes"
                     checked={selectedCategories.includes("rose")}
-                    onChange={() => handleCategoryClick("rose")}
+                    onChange={() => handleCategoryClick(["rose"])}
                   />
                   <label htmlFor="roseFlakes">
                     Rose Flakes
@@ -177,7 +183,7 @@ const ProductContent = ({ searchQuery }) => {
                     id="rosePowder"
                     name="rosePowder"
                     checked={selectedCategories.includes("rose")}
-                    onChange={() => handleCategoryClick("rose")}
+                    onChange={() => handleCategoryClick(["rose"])}
                   />
                   <label htmlFor="rosePowder">
                     Rose Powder
